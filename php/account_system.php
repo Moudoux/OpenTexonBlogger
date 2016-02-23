@@ -5,6 +5,10 @@ session_start();
 require_once('antixss.php');
 require_once('config.php');
 
+function setSessionVariable($variable,$content) {
+    $_SESSION[$variable] = $content;
+}
+
 function registerUser($user,$pass1,$pass2,$desc,$fullname,$gmail){
 	$errorText = '';
 	
