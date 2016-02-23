@@ -18,9 +18,10 @@ $ sudo apt-get install apache2
 $ sudo apt-get install php5
 $ sudo a2enmod rewrite
 $ sudo service apache2 restart
+$ sudo chown -R www-data /var/www
 ```
 
-Also you must make sure that .htaccess is enabled on your server configuration.
+Also you must make sure that .htaccess is enabled on your server configuration and that apache2 has read access to the web directory.
 
 This software is NOT compatible with Windows, only Linux or Mac. Also this software uses CloudFlare to get ip information such as country and therefore some features will not work unless you use CloudFlare.
 
@@ -32,9 +33,12 @@ Download the source and put it in your web server then open the file php/config.
 
  - Add more info to account.php
  - Automatic updater
+ - Translate more
 
 License
 ----
 
 This software is licensed under the MIT license.
+
+If you wish to modify this software please give credit and link to this git.
 
