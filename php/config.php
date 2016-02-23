@@ -22,6 +22,7 @@
 	define("Language_Auto","false");
 	define("Website_Allow_Register","true");
 	define("Website_Require_Login","false");
+	define("Security_EmailLoginVerification","true");
 	
 	// Email server settings
 	define("Email_Username","");
