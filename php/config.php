@@ -4,7 +4,7 @@
 		Attention!, This software only works with Linux/Mac NOT Windows
 	**/
 
-	require_once('php/account_system.php');
+	require_once('account_system.php');
 
 	// General settings
 	define("Website_Url","https://example.com");
