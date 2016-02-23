@@ -5,6 +5,12 @@
 <?php
 
 	require_once('php/account_system.php');
+    require_once('php/sendmail.php');
+
+    $_username = '';
+    $_password = '';
+    $random_Key = '';
+    $secondAuth = false;
 
 	$error = '';
 
@@ -23,12 +29,34 @@
 	if (isset($_POST['butSubmit'])){
 		$username  = isset($_POST['username']) ? $_POST['username'] : '';
 		$password  = isset($_POST['password']) ? $_POST['password'] : '';
-		$error = loginUser($username,$password);
+		
+        $_username  = isset($_POST['username']) ? $_POST['username'] : '';
+		$_password  = isset($_POST['password']) ? $_POST['password'] : '';
+		if (authUser($username,$password) == true) {
+            $secondAuth = true;
+			$random_Key = md5(uniqid(rand(), true));
+            require_once('profiles/'.$_username.'.php');
+            sendamail($email,constant("Website_Name").' Login code','Here is your login code: '.$random_Key."\nPlease note that this key can only be used once.");
+		} else {
+            $error = 'Error: Wrong username or password';
+        }
+	}
+
+    if (isset($_POST['butSecondAuth'])){
+		$ucode  = isset($_POST['ucode']) ? $_POST['ucode'] : '';
+        if ($ucode == $random_Key) {
+            $error = loginUser($_username,$_password);
+        } else {
+            $error = 'Error: Code does not match, please try again.';
+        }
 		if ($error == '') {
 			header('Location: '.$_GET['url']);
 		}
 	}
 	
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +159,7 @@
               <div class="col-lg-8 col-md-7 col-sm-12">
                 <div class="blog-left blog-details">
                   <!-- Start single blog post -->
-                  
+                 <?php if ($secondAuth == false) { ?>
 				  <div class="blog-comment">
 				  <br>
                     <h2>Login on <?php require_once('php/config.php'); echo constant("Website_Name"); ?></h2>
@@ -156,7 +184,25 @@
                        <button class="button button-default" data-text="Login" name="butSubmit" type="submit"><span>Login</span></button>
                     </form>
                   </div>
-                 
+
+                 <?php } else { ?>
+
+                <div class="blog-comment">
+				  <br>
+                    <h2>2 step authentication</h2>
+                   
+                    <form class="comment-form" method="POST">
+                      
+                      <div class="form-group">                
+                        <input type="password" required name="ucode" placeholder="Code sent to your email" class="form-control">
+                      </div>              
+					  
+
+                       <button class="button button-default" data-text="Confirm" name="butSecondAuth" type="submit"><span>Confirm</span></button>
+                    </form>
+                  </div>
+
+                <?php } ?>
                   <!-- End single blog post -->                  
                 </div>
               </div>
