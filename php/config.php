@@ -8,7 +8,7 @@
 
 	// General settings
 	define("Website_Url","https://example.com");
-	define("Website_Name","Example Company");
+	define("Website_Name","Company");
 	define("Website_Copyright","Copyright &copy; ".constant("Website_Name")." 2014-".date("Y")." All Rights Reserved<br>Powered by the <a href='https://opentexon.com/blog'>OpenTexon Blog Platform</a> | <a href='terms'>Terms & Conditions</a>");
 	define("Website_Lockdown","false");
 	define("Excpetions_IP_Addresses","");
