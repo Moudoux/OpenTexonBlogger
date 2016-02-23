@@ -138,7 +138,7 @@
 							<h2>OS not supported</h2>
 						</div>
 						
-						<p>The OpenTexon Blogger Platform will not work on windows servers.<br>Please use Linux or Mac.</p>
+						<p>The OpenTexon Blogger Platform will not work on Windows servers.<br>Please use Linux or Mac.</p>
 						
 					<?php } else { ?>
 						
@@ -148,7 +148,7 @@
 						
 						<p>Before you continue with the installation please configure php/config.php to your liking.</p>
 						
-						<p>Testing write permissions...
+						<p>Checking folders...
 						
 						<?php
 						
@@ -162,6 +162,38 @@
 						}
 
 						if (file_exists(constant("Website_Data_dir")) == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('subscribers') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('profiles') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('data') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('feed') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('downloads') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('files') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('posts') == false) {
+							$foldersDontExists = true;
+						}
+						
+						if (file_exists('projects') == false) {
 							$foldersDontExists = true;
 						}
 						
@@ -196,7 +228,7 @@
 							
 							if ($allowed == false) { ?>
 
-								<br><br>Error: Cannot write to folders, please execute themes commands in a terminal:<br><br>
+								<br><br>Error... Cannot write to folders, please execute themes commands in a terminal:<br><br>
 								sudo chown -R www-data <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/profiles<br>
 								sudo chown -R www-data <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/posts<br>
 								sudo chown -R www-data <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/data<br>
@@ -210,7 +242,7 @@
 
 							<?php } else { ?>
 							
-								Can write to all folders.<br><br>Checking for all directories... Found all required directories.</p>
+								Success... All folders were found and all permissions is correct.</p>
 							
 								<p>Congratulations you can now setup the administrator account.</p>
 								
@@ -223,9 +255,17 @@
 							<?php } 
 						} else { ?>
 							
-							Error... Not all folders were found.<br><br>Please create the following folders:<br><br>
-							<?php require_once('php/config.php'); echo constant("Logger_Dir"); ?><br>
-							<?php require_once('php/config.php'); echo constant("Website_Data_dir"); ?><br><br>
+							Error... Not all folders were found.<br><br>Please execute the following commands:<br><br>
+							sudo mkdir <?php require_once('php/config.php'); echo constant("Logger_Dir"); ?><br>
+							sudo mkdir <?php require_once('php/config.php'); echo constant("Website_Data_dir"); ?><br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/profiles<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/data<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/feed<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/downloads<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/files<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/posts<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/projects<br>
+							sudo mkdir <?php echo $_SERVER['DOCUMENT_ROOT']; ?>/subscribers<br><br>
 							Then refresh this page.</p>
 							
 						<?php }
