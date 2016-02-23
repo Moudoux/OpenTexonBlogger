@@ -2,17 +2,26 @@
 	require_once('php/config.php');
 	checkPage();
 ?>
+<?php 
+    session_start();
+    $secondAuth = false;
+	$error = '';
+?>
 <?php
+
+    $username = '';
+
+    function writefile($text,$loc) {
+        if (file_exists($loc)) {
+            unlink($loc);
+        }
+		$fp = fopen($loc,"wb");
+		fwrite($fp,$text);
+		fclose($fp);
+	}
 
 	require_once('php/account_system.php');
     require_once('php/sendmail.php');
-
-    $_username = '';
-    $_password = '';
-    $random_Key = '';
-    $secondAuth = false;
-
-	$error = '';
 
 	if (isset($_POST['butSearch'])){
 		$comment  = isset($_POST['searchText']) ? $_POST['searchText'] : '';
@@ -29,23 +38,33 @@
 	if (isset($_POST['butSubmit'])){
 		$username  = isset($_POST['username']) ? $_POST['username'] : '';
 		$password  = isset($_POST['password']) ? $_POST['password'] : '';
-		
-        $_username  = isset($_POST['username']) ? $_POST['username'] : '';
-		$_password  = isset($_POST['password']) ? $_POST['password'] : '';
+	if (constant("Security_EmailLoginVerification") == "true") {
+        setSessionVariable('username_',$username);
+
 		if (authUser($username,$password) == true) {
             $secondAuth = true;
-			$random_Key = md5(uniqid(rand(), true));
-            require_once('profiles/'.$_username.'.php');
-            sendamail($email,constant("Website_Name").' Login code','Here is your login code: '.$random_Key."\nPlease note that this key can only be used once.");
+			$rkey = md5(uniqid(rand(), true));
+            writefile($rkey,'profiles/'.$username.'/rkey.token');
+            writefile($username,'profiles/'.$username.'/username.token');  
+            writefile($password,'profiles/'.$username.'/pw.token');
+            require_once('profiles/'.$username.'.php');
+            sendamail($email,constant("Website_Name").' Login code','Here is your login code: '.$rkey."\nPlease note that this key can only be used once.");
 		} else {
             $error = 'Error: Wrong username or password';
+        }
+      } else {
+            $error = loginUser($username,$password);
+        if ($error == '') {
+			header('Location: '.$_GET['url']);
+		}
         }
 	}
 
     if (isset($_POST['butSecondAuth'])){
-		$ucode  = isset($_POST['ucode']) ? $_POST['ucode'] : '';
-        if ($ucode == $random_Key) {
-            $error = loginUser($_username,$_password);
+        $username = $_SESSION['username_'];
+		$ucode  = isset($_POST['unique_code']) ? $_POST['unique_code'] : '';
+        if ($ucode == file_get_contents('profiles/'.$username.'/rkey.token')) {
+            $error = loginUser(file_get_contents('profiles/'.$username.'/username.token'),file_get_contents('profiles/'.$username.'/pw.token'));
         } else {
             $error = 'Error: Code does not match, please try again.';
         }
@@ -194,7 +213,7 @@
                     <form class="comment-form" method="POST">
                       
                       <div class="form-group">                
-                        <input type="password" required name="ucode" placeholder="Code sent to your email" class="form-control">
+                        <input type="password" required name="unique_code" placeholder="Code sent to your email" class="form-control">
                       </div>              
 					  
 
