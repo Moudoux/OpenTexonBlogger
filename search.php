@@ -112,11 +112,62 @@
 				  
 				
 				  <div class="blog-title">
-					<h2>Site serach is not avaiable yet.</h2>
+					<h2>Search results for: <?php
+                    $comment  = $_GET['q'];
+		            $comment=str_replace("+", ' ',$comment);
+                    echo $comment;
+                    ?>.</h2>
 				  </div>
 				 
-				 <p>Site search will come in a while.</p>
-				 
+                   <?php 
+
+                    $posts = 'posts';
+					$directories = glob($posts . '/*' , GLOB_ONLYDIR);
+			
+					$reversed = array_reverse($directories);
+					$count = 0;
+					$max_posts = 15;
+				    $comment  = $_GET['q'];
+		            $comment=str_replace("+", ' ',$comment);
+                    $found = false;
+					foreach($reversed as $dire) {
+                        if ($max_posts > $count) {
+                            $pName = $dire;
+							$pName=str_replace('posts/', '',$pName);
+                            if (strpos(file_get_contents($dire.'/title'),$comment) !== false) {
+                                $found = true;
+                                $date = file_get_contents($dire.'/date');
+							    $author = file_get_contents($dire.'/author');
+							    $post = file_get_contents($dire.'/post');
+							    $title = file_get_contents($dire.'/title');
+						    	$date_expanded = file_get_contents($dire.'/date_expanded');
+							    $full_name = file_get_contents($dire.'/full_name');
+                                
+                                echo '<div class="blog-title">';
+								
+									echo '<h2><a href="article?id='.$pName.'">'.$title.'</a></h2>';
+									echo '<p>'.constant("Lang_General_Posted").' <a href="profile?id='.$author.'">'.$full_name.'</a> '.constant("Lang_General_Posted_On").' <span class="blog-date">'.$date_expanded.'</span>';
+								
+								echo '</div>';
+								
+								if (file_exists($dire.'/post_preview')) {
+									echo file_get_contents($dire.'/post_preview');
+									echo '<a href="article?id='.$pName.'"><button class="button button-default" data-text="'.constant("Lang_General_But_ReadMore").'"><span>'.constant("Lang_General_But_ReadMore").'</span></button></a>';
+								} else {
+									echo $post;
+									echo '<a href="article?id='.$pName.'"><button class="button button-default" data-text="'.constant("Lang_General_But_ReadMore").'"><span>'.constant("Lang_General_But_ReadMore").'</span></button></a>';
+								}
+                            }
+                        }
+                        $count +=1;
+                    }
+                    
+                    if ($found == false) {
+                        echo '<p>No search results were found.</p>';
+                    }
+
+                    ?>
+
 				  </article>
                  
                   <!-- End single blog post -->                  
