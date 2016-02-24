@@ -36,6 +36,10 @@ This software is NOT compatible with Windows, only Linux or Mac. Also this softw
 
 Download the source and put it in your web server then open the file php/config.php and edit to your liking making sure to set a web server address and where the website location is. After that navigate to http://yoursite.com/install and follow the onscreen instructions.
 
+### Translations
+
+Feel free to translate this software into your language, head into lang/EN/language.php and create a request and translate to your language.
+
 ### Todos
 
  - Add more info to account.php
