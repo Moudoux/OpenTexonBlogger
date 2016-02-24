@@ -38,8 +38,6 @@ function sendamail($to,$subject,$body) {
 	
 		if (PEAR::isError($mail)) {
 			echo("<p>" . $mail->getMessage() . "</p>");
-		} else {
-			echo("<p>Message successfully sent!</p>");
 		}
 	
 	} catch (Exception $e) {
