@@ -187,7 +187,7 @@
               </div>
               <div class="col-lg-4 col-md-5 col-sm-12">
                 <aside class="blog-right">
-                
+                <?php require_once('php/config.php'); if (constant("Website_Require_Login") == "false") { ?>
                   <div class="single-widget">
                     <h2><?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_Search"); ?></h2>
                     <form class="blog-search" method="POST">
@@ -195,7 +195,7 @@
                       <button class="button button-default" data-text="<?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_But_Search"); ?>" name="butSearch" type="submit"><span><?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_But_Search"); ?></span></button>
                     </form>
                   </div>
-                 
+                   <?php } ?>
                   <div class="single-widget">
                     <h2><?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_FollowUs"); ?></h2>
                     <div class="follow-us">
@@ -207,7 +207,7 @@
                       <a class="dribbble" href="<?php require_once('php/config.php'); echo constant("Social_Dribbble"); ?>"><span class="fa fa-dribbble"></span></a>
                     </div>
                   </div>
-                 
+                 <?php require_once('php/config.php'); if (constant("Website_Require_Login") == "false") { ?>
                   <div class="single-widget">
                     <h2><?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_Subscribe"); ?></h2>
                     <form class="blog-search" method="POST">
@@ -215,7 +215,7 @@
                       <button class="button button-default" name="butSubscribe" data-text="<?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_But_Subscribe"); ?>" type="submit"><span><?php require_once('php/lang.php'); $LangDir = getLang(); require_once('lang/'.$LangDir.'/language.php'); echo constant("Lang_General_But_Subscribe"); ?></span></button>
                     </form>
                   </div>
-                 
+                   <?php } ?>
                 </aside>
               </div>
             </div>
