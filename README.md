@@ -40,6 +40,11 @@ Download the source and put it in your web server then open the file php/config.
 
 Feel free to translate this software into your language, head into lang/EN/language.php and create a request and translate to your language.
 
+Current supported languages are:
+* Swedish
+* English
+There is also an option to auto detect what language the user is on depending on their ip address.
+
 ### Todos
 
  - Add more info to account.php
