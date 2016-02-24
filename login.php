@@ -213,7 +213,7 @@
                     <form class="comment-form" method="POST">
                       
                       <div class="form-group">                
-                        <input type="password" required name="unique_code" placeholder="Code sent to your email" class="form-control">
+                        <input type="password" required name="unique_code" placeholder="Please enter the code sent to your email" class="form-control">
                       </div>              
 					  
 
