@@ -43,6 +43,7 @@ Feel free to translate this software into your language, head into lang/EN/langu
 Current supported languages are:
 * Swedish
 * English
+
 There is also an option to auto detect what language the user is on depending on their ip address.
 
 ### Todos
