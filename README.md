@@ -9,6 +9,8 @@ To Install the OpenTexonBlogger you'll need these things:
 * PHP5
 * Apache2
 * Mod_rewrite
+* PEAR
+* The following pear modules: mail, Net_SMTP, Auth_SASL, mail_meme
 
 To install these do the following commands
 
@@ -17,6 +19,11 @@ $ sudo apt-get update
 $ sudo apt-get install apache2
 $ sudo apt-get install php5
 $ sudo a2enmod rewrite
+$ sudo apt-get install php-pear
+$ sudo pear install mail
+$ sudo pear install Net_SMTP
+$ sudo pear install Auth_SASL
+$ sudo pear install mail_mime
 $ sudo service apache2 restart
 $ sudo chown -R www-data /var/www
 ```
