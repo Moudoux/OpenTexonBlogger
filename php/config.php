@@ -61,7 +61,7 @@
 				<script src="js/fuckadblock.js"></script>
 				<script>
 					function adBlockDetected() {
-						
+						window.location = "error_pages/adblock";	
 					}
 		
 					if(typeof fuckAdBlock === 'undefined') {
