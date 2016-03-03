@@ -11,16 +11,16 @@
 	<title>You have been blocked</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="robots" content="noarchive" />
-	<link rel="shortcut icon" href="/error_pages/favicon.png" />
+	<link rel="shortcut icon" href="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/error_pages/favicon.png" />
 
 	<style type="text/css">
 	body {
-		background: url(/error_pages/background.jpg);
+		background: url(background.jpg);
 		font-family: Helvetica, arial, sans-serif;
 		color: #ccc;
 	}
 	.alert-container {
-		background: url(/error_pages/textbox.png);
+		background: url(textbox.png);
 		width: 918px;
 		height: 142px;
 		margin: 82px auto 0px;
@@ -58,6 +58,6 @@
 			<div class="alert-subheading">From visiting opentexon</div>
 		</div>
 	</div>
-	<div class="redirect">Please contact server admin at <a href="mailto:strumaticjoker2@gmail.com">strumaticjoker2@gmail.com</a> if you belive this is an error.</div>
+	<div class="redirect">Please contact server admin at <a href="mailto:<?php require_once($_SERVER['DOCUMENT_ROOT'].'/php/config.php'); echo constant("Website_Server_Admin"); ?>"><?php require_once($_SERVER['DOCUMENT_ROOT'].'/php/config.php'); echo constant("Website_Server_Admin"); ?></a> for any questions.</div>
 </body>
 </html>
