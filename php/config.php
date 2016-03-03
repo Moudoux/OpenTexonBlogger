@@ -23,6 +23,7 @@
 	define("Website_Allow_Register","true");
 	define("Website_Require_Login","false");
 	define("Security_EmailLoginVerification","true");
+	define("Block_AdBlock","false");
 	
 	// Email server settings
 	define("Email_Username","");
@@ -54,15 +55,35 @@
 	
 	// Functions
 	
-    // Check if .htaccess is working
+	function AdblockCheck() {
+		if (constant("Block_AdBlock")) == "true") {
+			echo <<<END
+				<script src="js/fuckadblock.js"></script>
+				<script>
+					function adBlockDetected() {
+						
+					}
+		
+					if(typeof fuckAdBlock === 'undefined') {
+						adBlockDetected();
+					} else {
+						fuckAdBlock.setOption({ debug: true });
+						fuckAdBlock.onDetected(adBlockDetected).onNotDetected(adBlockNotDetected);
+					}
+				</script>
+END;
+		}
+	}
+	
+    	// Check if .htaccess is working
 
-    function _checkHtaccess() {
+    	function _checkHtaccess() {
 		if (strpos($_SERVER['REQUEST_URI'],'.php')) {
 			header('Location: /error_pages/enable_htaccess.html');
 		}
-    }
+	 }
 
-    // Check if they have to login 
+	// Check if they have to login 
 
 	function _loginCheck() {
 		if (constant("Website_Require_Login") == "true") {
