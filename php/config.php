@@ -56,7 +56,7 @@
 	// Functions
 	
 	function AdblockCheck() {
-		if (constant("Block_AdBlock")) == "true") {
+		if (constant("Block_AdBlock") == "true") {
 			echo <<<END
 				<script src="js/fuckadblock.js"></script>
 				<script>
