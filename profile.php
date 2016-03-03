@@ -56,6 +56,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+	<?php require_once('php/config.php'); AdblockCheck(); ?>
+	
   </head>
   <body>
   <!-- BEGAIN PRELOADER -->
@@ -132,6 +135,22 @@
 						//echo '<img src="'.$imgPath.'" style="display:inline;"/>';
 						echo '<p>'.$description.'</p>';
 						
+                        $badgeCounter = 0;
+                        
+                        echo '<div class="blog-title">';
+							echo '<h2>Badges</h2><br>';
+
+							    if (file_get_contents('profiles/'.$_GET['id'].'/admin') == "true") {
+                                    $badgeCounter +=1;
+                                    echo '<img src="res/badges/admin.png" />';
+                                }
+                            					
+                        echo '</div>';
+                        
+                        if ($badgeCounter == 0) {
+                            echo '<p>The specified user has no badges</p>';
+                        }
+
 						echo '<div class="blog-title">';
 							echo '<h2>Account information</h2>';
 						echo '</div>';

@@ -80,7 +80,7 @@
 		
 		if ($isSafe == true) {
 			
-			sendamail('strumaticjoker2@gmail.com','Contact request','Hello my name is '.$name."\n".'My email is '.$email."\n\n".$message);
+			sendamail(constant("Website_Server_Admin"),'Contact request','Hello my name is '.$name."\n".'My email is '.$email."\n\n".$message);
 			
 			header('Location: reload');	
 		} else {
@@ -129,6 +129,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+	<?php require_once('php/config.php'); AdblockCheck(); ?>
+	
   </head>
   <body>
   <!-- BEGAIN PRELOADER -->

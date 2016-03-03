@@ -61,6 +61,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+	<?php require_once('php/config.php'); AdblockCheck(); ?>
+	
   </head>
   <body>
 
@@ -168,7 +171,7 @@
 					
 						if ($count < $max_posts) {
 							
-							$pName = $dire;
+							                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  $pName = $dire;
 							
 							$pName=str_replace('posts/', '',$pName);
 							$date = file_get_contents($dire.'/date');

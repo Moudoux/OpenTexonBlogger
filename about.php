@@ -56,6 +56,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+	<?php require_once('php/config.php'); AdblockCheck(); ?>
+	
   </head>
   <body>
   <!-- BEGAIN PRELOADER -->
@@ -115,9 +118,19 @@
 					<h2>About our site:</h2>
 				  </div>
 				  
-                    <p>Add your site info in about.php</p>				  
+				  
+				  <p>We work with Linux, Unix, Andorid, Java, C#, Pure C. Offering services such as web hosting, hiring us for coding and more. <a href="contact">Contact us</a> for more information or if you have any questions about <?php require_once('php/config.php'); echo constant("Website_Name"); ?>.</p>
 
 				  
+				  
+				  <p>Our website is hand written by <a href="profile?id=deftware">Deftware</a>, its mostly written in PHP 5 and Html 5. We do not use any web design software like Wordpress. It's hosted on our dedicated Debian server. We use services like Cloudflare to protect our website/services against DDOS attacts etc. We also use DMCA to protect our website from theft.</p>
+			
+				  <div class="blog-title">
+					<h2>Current team:</h2>
+				  </div>
+				  
+				   <p><a href="profile?id=deftware">Alexander (CEO and Funder)</a></p>
+				 
 				  </article>
                  
                   <!-- End single blog post -->                  
