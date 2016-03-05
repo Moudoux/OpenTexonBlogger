@@ -7,42 +7,92 @@
 	require_once('account_system.php');
 
 	// General settings
-	define("Website_Url","https://example.com");
-	define("Website_Name","Company");
+
+	// The domain of your website
+	define("Website_Url","http://example.com");
+
+	// The name of your website
+	define("Website_Name","Example");
+
+	// Website copyright to display at the bottom of the page
 	define("Website_Copyright","Copyright &copy; ".constant("Website_Name")." 2014-".date("Y")." All Rights Reserved<br>Powered by the <a href='https://opentexon.com/blog'>OpenTexon Blog Platform</a> | <a href='terms'>Terms & Conditions</a>");
+
+	// If the site is on maintenance and should not allow any traffic to the website
 	define("Website_Lockdown","false");
+
+	// IP Addresses that are allowed to visit the site on maintenance mode
 	define("Excpetions_IP_Addresses","");
+
+	// IP Addresses that are blocked from visiting the website
 	define("Blocker_Blocked_IPS","");
+
+	// Country CODES that are blocked from visitng the website
 	define("Blocker_Blocked_Countries","");
+
+	// IP Addresses that should be ignored by the logger
 	define("Excpetions_IP_Ignore_Log","");
-	define("Website_Server_Admin","webadminexample@gmail.com");
-	define("Website_Maintaince","Some date");
-	define("Website_Article_CanPost","false");
+
+	// The email address of the site owner
+	define("Website_Server_Admin","example@gmail.com");
+
+	// When the site should be online when it's on maintenance
+	define("Website_Maintaince","22:00 CET 15 feb 2016");
+
+	// If normal users can post articles
+	define("Website_Article_CanPost","true");
+
+	// The website language
 	define("Website_Language","EN");
+
+	// If it should set the language based on the visitor location
 	define("Language_Auto","false");
+
+	// If users can register an account
 	define("Website_Allow_Register","true");
+
+	// If users must login to view the website
 	define("Website_Require_Login","false");
-	define("Security_EmailLoginVerification","true");
+
+	// If two step authentication is enabled when logging in
+	define("Security_EmailLoginVerification","false");
+
+	// If it should block users with AdBlock enabled
 	define("Block_AdBlock","false");
-	
+
 	// Email server settings
+
+	// Your email server username
 	define("Email_Username","");
+
+	// Your email server password
 	define("Email_Password","");
+
+	// Your email server host
 	define("Email_Host","");
+
+	// Your email server port
 	define("Email_Port","");
-	
+
 	// Location settings
+
+	// The location of the logs
 	define("Logger_Dir","/var/wwwlogs/");
-	define("Website_Data_dir","/var/example/");
-	define("Website_Location","/var/www/example.com/");
-	
-	// Website software information (Do not change)
+
+	// The location of stored data for accounts etc (Please do NOT store in your web directory)
+	define("Website_Data_dir","/var/opentexon/");
+
+	// The location of the website
+	define("Website_Location","/var/www/opentexon.com/");
+
+	// Website backend information (Do NOT change)
 	define("Website_Version","0.0.3");
-	
+
 	// Update settigns
+	// If the website should look for updates (Recommended to have set to true)
 	define("Update_LookForUpdates","true");
-	
+
 	// Social media Links
+	// Just put your web addresses for your social accounts for the webiste
 	define("Social_Facebook","");
 	define("Social_Twitter","");
 	define("Social_GPlus","");
