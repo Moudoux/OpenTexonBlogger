@@ -79,8 +79,8 @@
 		}
 		
 		if ($isSafe == true) {
-			
-			sendamail(constant("Website_Server_Admin"),'Contact request','Hello my name is '.$name."\n".'My email is '.$email."\n\n".$message);
+			$UserIP = $_SERVER['HTTP_CF_CONNECTING_IP'].", ".$_SERVER["HTTP_CF_IPCOUNTRY"];
+			sendamail(constant("Website_Server_Admin"),'Contact request','Hello my name is '.$name."\n".'My email is '.$email."\nMy IP and Country is: ".$UserIP."\n\n".$message);
 			
 			header('Location: reload');	
 		} else {
